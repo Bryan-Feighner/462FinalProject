@@ -19,8 +19,8 @@ int main(int argc, char** argv){
         cin.get();
         return -1;
     }
-    cout << "The image we will be working with is the Lenna reference image. If you would like to change the image being used, please refer to the comment in line 9. Please make a selection of which type of image processing you would like to perform.";
-    cout <<"1: Change Brightness\n2: Change Contrast\n3: Convert to black and white\n4: Perform histogram equlization\n5: Invert image\n6: Blur image\n7: Rotate image\n8:  ";
+    cout << "The image we will be working with is the Lenna reference image. If you would like to change the image being used, please refer to the comment in line 9. Please make a selection of which type of image processing you would like to perform.\n";
+    cout <<"1: Change Brightness\n2: Change Contrast\n3: Convert to black and white\n4: Perform histogram equlization\n5: Invert image\n6: Blur image\n7: Rotate image\n";
         cin >> choice;
         switch (choice) {
         case 1:
@@ -90,20 +90,20 @@ int main(int argc, char** argv){
             break;
         case 7:
             cout << "You have chosen to rotate your image. Your image will have a slider above it to allow you to rotate it to your own liking. You will have 10 seconds to rotate the image.";
-            namedWindow(orgImg);
+            namedWindow(orgImg, WINDOW_NORMAL);
             imshow(orgImg, image);
-            const char* pzRotatedImage = "Rotated Image";
-            namedWindow(pzRotatedImage);
-            int iAngle = 180;
-            createTrackbar("Angle", pzRotatedImage, &iAngle, 360);
-            int iImageHieght = image.rows / 2;
-            int iImageWidth = image.cols / 2;
+            const char* rotatedImage = "Rotated Image";
+            namedWindow(rotatedImage);
+            int angle = 180;
+            createTrackbar("Angle", rotatedImage, &angle, 360);
+            int imageHieght = image.rows / 2;
+            int imageWidth = image.cols / 2;
             while (true)
             {
-                Mat matRotation = getRotationMatrix2D(Point(iImageWidth, iImageHieght), (iAngle - 180), 1);
+                Mat matRotation = getRotationMatrix2D(Point(imageWidth, imageHieght), (angle - 180), 1);
                 Mat imgRotated;
                 warpAffine(image, imgRotated, matRotation, image.size());
-                imshow(pzRotatedImage, imgRotated);
+                imshow(rotatedImage, imgRotated);
 
                 int iRet = waitKey(1);
                 if (iRet == 27)
