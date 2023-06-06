@@ -8,7 +8,7 @@ void createWindow(String orgImg, String newImg, Mat type1, Mat type2) {
   namedWindow(orgImg, WINDOW_NORMAL);
   namedWindow(newImg, WINDOW_NORMAL);
   imshow(orgImg, type1);
-  imshow(orgImg, type2);
+  imshow(newImg, type2);
 }
 // Driver code
 int main(int argc, char** argv) {
